@@ -1,0 +1,26 @@
+<input #inputField
+      (keyup.enter)="searchForTweets(inputField.value)"
+      (blur)="searchForTweets(inputField.value); inputField.value='' ">
+    <button class = "btn btn-default" type = "button"(click)=searchForTweets(inputField.value)>Search</button>
+    <div class="container">
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tweet</th>
+      <th>Username</th>
+      <th>NameofTweet</th>
+      <th>Language</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of countries">
+      <th scope="row">{{country.id}}</th>
+      <td>{{country.content}}</td>
+      <td>{{country.userName | uppercase}}</td>
+      <td>{{country.nameOfTweet}}</td>
+      <td>{{country.language}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

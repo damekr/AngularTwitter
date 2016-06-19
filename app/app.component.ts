@@ -2,18 +2,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { CountryService } from './tweets/tweets.service';
 
 @Component({
+    templateUrl: '../app/app.component.html',
     selector: 'app',
-    template: `
-    <input #inputField
-      (keyup.enter)="searchForTweets(inputField.value)"
-      (blur)="searchForTweets(inputField.value); inputField.value='' ">
-
-    <button (click)=searchForTweets(inputField.value)>Search</button>
-    <div class="container">
-        <ul><li *ngFor="let country of countries">{{country.name}}</li></ul>
-    </div>
-
-`,
     providers: [CountryService],
 })
 

@@ -30,8 +30,8 @@ var SearchButtonComponent = (function () {
     };
     SearchButtonComponent = __decorate([
         core_1.Component({
+            templateUrl: '../app/app.component.html',
             selector: 'app',
-            template: "\n    <input #inputField\n      (keyup.enter)=\"searchForTweets(inputField.value)\"\n      (blur)=\"searchForTweets(inputField.value); inputField.value='' \">\n\n    <button (click)=searchForTweets(inputField.value)>Search</button>\n    <div class=\"container\">\n        <ul><li *ngFor=\"let country of countries\">{{country.name}}</li></ul>\n    </div>\n\n",
             providers: [tweets_service_1.CountryService],
         }), 
         __metadata('design:paramtypes', [tweets_service_1.CountryService])

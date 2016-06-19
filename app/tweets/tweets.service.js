@@ -16,13 +16,16 @@ var CountryService = (function () {
     function CountryService(http) {
         this.http = http;
         this.countries = [];
-        this.endpoint_url = "https://restcountries.eu/rest/v1/region/";
+        // endpoint_url:String = "https://restcountries.eu/rest/v1/region/";
+        this.endpoint_url = "http://localhost:8080/api/tweets";
         console.log("Country Service started!");
         this.http = http;
     }
     CountryService.prototype.getCountriesByRegion = function (country) {
         console.log("Getting data");
-        return this.http.get(this.endpoint_url + country)
+        //    let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        //    let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.endpoint_url + "?tag=" + country)
             .map(function (res) { return res.json(); })
             .catch(this.handleError);
     };
