@@ -1,10 +1,11 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CountryService } from './tweets/tweets.service';
+import { TweetsLive }   from './tweetslive/tweetslive.component';
 
 @Component({
     templateUrl: '../app/app.component.html',
     selector: 'app',
-    providers: [CountryService],
+    providers: [CountryService, TweetsLive],
 })
 
 
@@ -12,7 +13,7 @@ export class SearchButtonComponent {
     countries = [];
     errorMessage = null;
 
-    constructor(private countryService:CountryService){
+    constructor(private countryService:CountryService, private tweetslive:TweetsLive){
 
     }
 
@@ -29,7 +30,20 @@ export class SearchButtonComponent {
         }
     }
 
+    setLiveRefresh(tweetname) {
+        this.tweetslive.send(tweetname);
+    }
 
+    start(){
+        console.log("Starting live reloading");
+        this.tweetslive.send("&&Start&&");
+        // this.tweetslive.setData();
+    }
+
+    stop(){
+        console.log("Stopping live reloading")
+        this.tweetslive.send("&&Stop&&");
+    }
 
     ngOnInit() {
         this.countries = null;

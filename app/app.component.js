@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var tweets_service_1 = require('./tweets/tweets.service');
+var tweetslive_component_1 = require('./tweetslive/tweetslive.component');
 var SearchButtonComponent = (function () {
-    function SearchButtonComponent(countryService) {
+    function SearchButtonComponent(countryService, tweetslive) {
         this.countryService = countryService;
+        this.tweetslive = tweetslive;
         this.countries = [];
         this.errorMessage = null;
     }
@@ -24,6 +26,18 @@ var SearchButtonComponent = (function () {
             console.log("InputField: " + inputField);
         }
     };
+    SearchButtonComponent.prototype.setLiveRefresh = function (tweetname) {
+        this.tweetslive.send(tweetname);
+    };
+    SearchButtonComponent.prototype.start = function () {
+        console.log("Starting live reloading");
+        this.tweetslive.send("&&Start&&");
+        // this.tweetslive.setData();
+    };
+    SearchButtonComponent.prototype.stop = function () {
+        console.log("Stopping live reloading");
+        this.tweetslive.send("&&Stop&&");
+    };
     SearchButtonComponent.prototype.ngOnInit = function () {
         this.countries = null;
         console.log("Component tweets has been inited");
@@ -32,9 +46,9 @@ var SearchButtonComponent = (function () {
         core_1.Component({
             templateUrl: '../app/app.component.html',
             selector: 'app',
-            providers: [tweets_service_1.CountryService],
+            providers: [tweets_service_1.CountryService, tweetslive_component_1.TweetsLive],
         }), 
-        __metadata('design:paramtypes', [tweets_service_1.CountryService])
+        __metadata('design:paramtypes', [tweets_service_1.CountryService, tweetslive_component_1.TweetsLive])
     ], SearchButtonComponent);
     return SearchButtonComponent;
 }());

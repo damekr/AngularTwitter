@@ -2,6 +2,12 @@
       (keyup.enter)="searchForTweets(inputField.value)"
       (blur)="searchForTweets(inputField.value); inputField.value='' ">
     <button class = "btn btn-default" type = "button"(click)=searchForTweets(inputField.value)>Search</button>
+    <input #inputField2
+      (keyup.enter)="setLiveRefresh(inputField2.value)"
+      (blur)="setLiveRefresh(inputField2.value); inputField2.value='' ">
+    <button class = "btn btn-default" type = "button"(click)=setLiveRefresh(inputField2.value)>Set live</button>
+    <button class = "btn btn-default" type = "button"(click)=start()>Start</button>
+    <button class = "btn btn-default" type = "button"(click)=stop()>Stop</button>
     <div class="container">
     <table class="table table-hover">
   <thead>
